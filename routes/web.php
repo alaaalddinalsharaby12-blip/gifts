@@ -42,25 +42,13 @@ Route::get('/category/{id}', [HomeController::class, 'showCategory'])->name('cat
 // عرض المنتج
 Route::get('/product/{id}', [FrontendProductController::class, 'show'])->name('product.show');
 
-
-// تخزين الطلب (يتطلب تسجيل دخول)
-Route::post('/order', [FrontendOrderController::class, 'store'])
-    ->middleware('auth')
-    ->name('order.store');
-
-// طلبات المستخدم (يتطلب تسجيل دخول)
-Route::get('/orders', [FrontendOrderController::class, 'index'])
-    ->middleware('auth')
-    ->name('orders.index');
-
-    // مسارات الطلبات الخاصة بالعميل (تحتاج تسجيل دخول)
+// ✅ مسارات الطلبات (تحتاج تسجيل دخول) - مجموعة واحدة فقط
 Route::middleware('auth')->group(function () {
-    
     Route::get('/order/create/{product}', [FrontendOrderController::class, 'create'])->name('order.create');
-    
     Route::post('/order/store', [FrontendOrderController::class, 'store'])->name('order.store');
     Route::get('/orders', [FrontendOrderController::class, 'index'])->name('orders.index');
 });
+
 
 /* =========================
    👤 DASHBOARD REDIRECT
@@ -92,10 +80,8 @@ Route::middleware(['auth', 'is_admin'])
         // السمات (Attributes)
         Route::resource('attributes', AttributeController::class);
 
-        // ✅ الطلبات - مع Route إضافي لتحديث الحالة
+        // الطلبات
         Route::resource('orders', AdminOrderController::class);
-        
-        // ✅ Route مخصص لتحديث الحالة (يجب أن يكون قبل أو بعد resource)
         Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])
             ->name('orders.updateStatus');
 
@@ -107,7 +93,7 @@ Route::middleware(['auth', 'is_admin'])
         Route::delete('/products/images/{image}', [AdminProductController::class, 'deleteImage'])
             ->name('products.deleteImage');
 
-            Route::patch('/products/{product}/toggle', [AdminProductController::class, 'toggleStatus'])
+        Route::patch('/products/{product}/toggle', [AdminProductController::class, 'toggleStatus'])
             ->name('products.toggleStatus');
 
         // جلب سمات التصنيف (API)
