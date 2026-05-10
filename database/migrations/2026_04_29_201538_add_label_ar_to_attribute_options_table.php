@@ -8,15 +8,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('attribute_options', function (Blueprint $table) {
-            $table->string('label_ar')->nullable()->after('value');
-        });
+        if (!Schema::hasColumn('attribute_options', 'label_ar')) {
+            Schema::table('attribute_options', function (Blueprint $table) {
+                $table->string('label_ar')->nullable();
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('attribute_options', function (Blueprint $table) {
-            $table->dropColumn('label_ar');
-        });
+        if (Schema::hasColumn('attribute_options', 'label_ar')) {
+            Schema::table('attribute_options', function (Blueprint $table) {
+                $table->dropColumn('label_ar');
+            });
+        }
     }
 };
