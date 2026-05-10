@@ -8,15 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('video')->nullable()->after('image');
-        });
+        // ✅ تحقق إذا العمود موجود قبل الإضافة
+        if (!Schema::hasColumn('categories', 'video')) {
+            Schema::table('categories', function (Blueprint $table) {
+                $table->string('video')->nullable();
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('video');
-        });
+        // ✅ تحقق إذا العمود موجود قبل الحذف
+        if (Schema::hasColumn('categories', 'video')) {
+            Schema::table('categories', function (Blueprint $table) {
+                $table->dropColumn('video');
+            });
+        }
     }
 };
