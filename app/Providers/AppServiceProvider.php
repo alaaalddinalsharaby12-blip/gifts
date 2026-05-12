@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         // ✅ عرض التصنيفات في الـ nav فقط إذا كان الاتصال متاح
         try {
             DB::connection()->getPdo();
-            
+
             if (Schema::hasTable('categories')) {
                 $categories = \App\Models\Category::all();
                 View::share('navCategories', $categories);
