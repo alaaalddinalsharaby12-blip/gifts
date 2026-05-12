@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -14,8 +15,8 @@ class UserSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@admin.com',
             'phone' => '777111222',
-            'password' => '12345678',  // Laravel يشفرها تلقائياً
-            'role' => User::ROLE_ADMIN, // أو 1
+            'password' => '12345678',
+            'role' => 1, // admin
             'is_active' => true,
         ]);
 
@@ -24,8 +25,8 @@ class UserSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@user.com',
             'phone' => '777333444',
-            'password' => '12345678',  // Laravel يشفرها تلقائياً
-            'role' => User::ROLE_USER, // أو 0
+            'password' => '12345678',
+            'role' => 0, // user
             'is_active' => true,
         ]);
     }
