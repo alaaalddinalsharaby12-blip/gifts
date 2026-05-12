@@ -11,49 +11,36 @@ use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    /**
-     * عرض صفحة تسجيل الدخول
-     */
     public function showLoginForm()
     {
         return view('auth.login');
     }
 
-    /**
-     * تسجيل الدخول باستخدام name أو email أو phone
-     */
     public function login(Request $request)
     {
         $request->validate([
-            'login'    => 'required|string', // name أو email أو phone
+            'name'     => 'required|string',  // ✅ تغيير من 'login' إلى 'name'
             'password' => 'required|string',
         ]);
 
-        // البحث بالاسم أو البريد أو الهاتف
-        $user = User::where('name', $request->login)
-                    ->orWhere('email', $request->login)
-                    ->orWhere('phone', $request->login)
-                    ->first();
+        // البحث بالاسم
+        $user = User::where('name', $request->name)->first();
 
-        // التحقق من وجود المستخدم وكلمة المرور
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'login' => ['بيانات تسجيل الدخول غير صحيحة.'],
+                'name' => ['بيانات تسجيل الدخول غير صحيحة.'],
             ]);
         }
 
-        // التحقق من تفعيل الحساب
         if (!$user->isActive()) {
             throw ValidationException::withMessages([
-                'login' => ['الحساب غير مفعل، تواصل مع الإدارة.'],
+                'name' => ['الحساب غير مفعل، تواصل مع الإدارة.'],
             ]);
         }
 
-        // تسجيل الدخول
         Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
-        // توجيه حسب الدور
         if ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');
         }
@@ -61,9 +48,6 @@ class LoginController extends Controller
         return redirect()->route('home');
     }
 
-    /**
-     * تسجيل الخروج
-     */
     public function logout(Request $request)
     {
         Auth::logout();
@@ -71,5 +55,34 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    // ✅ تسجيل جديد
+    public function showRegisterForm()
+    {
+        return view('auth.register');
+    }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|unique:users',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|string|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt($request->password),
+            'role' => User::ROLE_USER,
+            'is_active' => true,
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('home');
     }
 }
