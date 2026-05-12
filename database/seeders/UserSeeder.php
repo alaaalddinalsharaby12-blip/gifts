@@ -10,23 +10,23 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // 👤 Admin
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@admin.com',
-            'phone' => '777111222',
-            'password' => '12345678',  // ✅ Laravel يشفرها تلقائياً عبر casts
-            'role' => 1,
-            'is_active' => true,
-        ]);
+        $admin = new User();
+        $admin->name = 'Admin1';
+        $admin->email = 'admin1@admin.com';
+        $admin->phone = '777111222';
+        $admin->password = '12345678';  // ✅ يمر عبر casts تلقائياً
+        $admin->role = 1;
+        $admin->is_active = true;
+        $admin->save();
 
         // 👤 User
-        User::create([
-            'name' => 'User',
-            'email' => 'user@user.com',
-            'phone' => '777333444',
-            'password' => '12345678',  // ✅ Laravel يشفرها تلقائياً عبر casts
-            'role' => 0,
-            'is_active' => true,
-        ]);
+        $user = new User();
+        $user->name = 'User1';
+        $user->email = 'user1@user.com';
+        $user->phone = '777333444';
+        $user->password = '12345678';  // ✅ يمر عبر casts تلقائياً
+        $user->role = 0;
+        $user->is_active = true;
+        $user->save();
     }
 }
