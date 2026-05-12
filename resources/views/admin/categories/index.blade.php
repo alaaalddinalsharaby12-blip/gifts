@@ -143,7 +143,7 @@
     <!-- الهيدر -->
     <div class="flex items-center justify-between mb-8">
         <div>
-            <h2 class="text-2xl font-black text-gray-900">إدارة الأقسام</h2>
+            <h2 class="text-2xl font-black text-gray-900">إدارة الأقسام </h2>
             <p class="text-gray-400 text-sm font-bold mt-1">إجمالي الأقسام: {{ $categories->count() }}</p>
         </div>
         <a href="{{ route('admin.categories.create') }}" class="btn-primary px-6 py-3 rounded-2xl font-black text-sm flex items-center gap-2 shadow-lg shadow-pink-200/50">
