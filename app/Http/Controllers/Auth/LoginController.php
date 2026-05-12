@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,21 +12,30 @@ use Illuminate\Validation\ValidationException;
 class LoginController extends Controller
 {
     /**
-     * تسجيل الدخول باستخدام Email أو Phone
+     * عرض صفحة تسجيل الدخول
+     */
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    /**
+     * تسجيل الدخول باستخدام name أو email أو phone
      */
     public function login(Request $request)
     {
         $request->validate([
-            'login'    => 'required|string', // email أو phone
+            'login'    => 'required|string', // name أو email أو phone
             'password' => 'required|string',
         ]);
 
-        // البحث بالبريد أو الهاتف
-        $user = User::where('email', $request->login)
+        // البحث بالاسم أو البريد أو الهاتف
+        $user = User::where('name', $request->login)
+                    ->orWhere('email', $request->login)
                     ->orWhere('phone', $request->login)
                     ->first();
 
-        // التحقق من وجود المستخدم
+        // التحقق من وجود المستخدم وكلمة المرور
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'login' => ['بيانات تسجيل الدخول غير صحيحة.'],
@@ -41,6 +51,7 @@ class LoginController extends Controller
 
         // تسجيل الدخول
         Auth::login($user, $request->boolean('remember'));
+        $request->session()->regenerate();
 
         // توجيه حسب الدور
         if ($user->isAdmin()) {
