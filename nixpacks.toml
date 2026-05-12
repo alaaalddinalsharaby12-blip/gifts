@@ -8,12 +8,11 @@ cmds = [
 ]
 
 [phases.build]
+# لا تشغل config:cache أثناء البناء لأنه يحتاج متغيرات Railway غير المتاحة بعد
+# سيتم تشغيلها في start command بدلاً من ذلك
 cmds = [
-    "php artisan config:cache",
-    "php artisan route:cache",
-    "php artisan view:cache",
     "php artisan storage:link"
 ]
 
 [start]
-cmd = "php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
+cmd = "php artisan config:cache && php artisan route:cache && php artisan view:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
