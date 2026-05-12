@@ -21,8 +21,16 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\UserController;
 
 
+/* =========================
+   🔐 AUTH ROUTES (Breeze/Fortify)
+   ========================= */
+require __DIR__.'/auth.php';
 
-Route::middleware('auth')->group(function () {
+
+/* =========================
+   👤 PROFILE ROUTES
+   ========================= */
+Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -42,8 +50,11 @@ Route::get('/category/{id}', [HomeController::class, 'showCategory'])->name('cat
 // عرض المنتج
 Route::get('/product/{id}', [FrontendProductController::class, 'show'])->name('product.show');
 
-// ✅ مسارات الطلبات (تحتاج تسجيل دخول) - مجموعة واحدة فقط
-Route::middleware('auth')->group(function () {
+
+/* =========================
+   📦 ORDERS (تحتاج تسجيل دخول + حساب مفعل)
+   ========================= */
+Route::middleware(['auth', 'active'])->group(function () {
     Route::get('/order/create/{product}', [FrontendOrderController::class, 'create'])->name('order.create');
     Route::post('/order/store', [FrontendOrderController::class, 'store'])->name('order.store');
     Route::get('/orders', [FrontendOrderController::class, 'index'])->name('orders.index');
@@ -54,15 +65,16 @@ Route::middleware('auth')->group(function () {
    👤 DASHBOARD REDIRECT
    ========================= */
 Route::get('/dashboard', function () {
-    return auth()->user()->role === 'admin'
+    return auth()->user()->isAdmin()
         ? redirect()->route('admin.dashboard')
         : redirect()->route('home');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'active'])->name('dashboard');
+
 
 /* =========================
    👨‍💼 ADMIN ROUTES
    ========================= */
-Route::middleware(['auth', 'is_admin'])
+Route::middleware(['auth', 'active', 'is_admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
@@ -100,8 +112,3 @@ Route::middleware(['auth', 'is_admin'])
         Route::get('/categories/{id}/attributes', [CategoryController::class, 'attributes'])
             ->name('categories.attributes');
     });
-
-/* =========================
-   🔐 AUTH ROUTES
-   ========================= */
-require __DIR__.'/auth.php';

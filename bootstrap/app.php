@@ -11,11 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // أضف هذا السطر هنا
         $middleware->alias([
-        'is_admin' => \App\Http\Middleware\AdminMiddleware::class,
-        'active' => \App\Http\Middleware\CheckUserActive::class,
-    ]);
+            'is_admin' => \App\Http\Middleware\AdminMiddleware::class,
+            'active' => \App\Http\Middleware\CheckUserActive::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

@@ -10,19 +10,21 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check()) {
-            return redirect('/login');
+        if (!Auth::check()) {
+            return redirect()->route('login');
         }
 
-        // التحقق من الدور
-        if (auth()->user()->role != 1) {
-            return redirect('/')->with('error', 'ليس لديك صلاحية دخول هذه الصفحة');
+        // ✅ استخدام Methods من Model بدلاً من القيم المباشرة
+        if (!Auth::user()->isAdmin()) {
+            return redirect()->route('home')->with('error', 'ليس لديك صلاحية دخول هذه الصفحة');
         }
 
-        // ✅ التحقق من حالة المستخدم (مفعل/موقوف)
-        if (!Auth::user()->is_active) {
+        // ✅ استخدام isActive() من Model
+        if (!Auth::user()->isActive()) {
             Auth::logout();
-            
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
             return redirect()->route('login')
                 ->with('error', 'تم إيقاف حسابك. تواصل مع الإدارة.');
         }

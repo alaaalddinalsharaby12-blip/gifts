@@ -10,7 +10,6 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    // ✅ ثوابت الأدوار
     public const ROLE_USER = 0;
     public const ROLE_ADMIN = 1;
 
@@ -37,25 +36,16 @@ class User extends Authenticatable
         ];
     }
 
-    // =========================
-    // 📌 الطلبات
-    // =========================
     public function orders()
     {
         return $this->hasMany(Order::class);
     }
 
-    // =========================
-    // 📌 هل المستخدم أدمن؟
-    // =========================
     public function isAdmin(): bool
     {
         return (int) $this->role === self::ROLE_ADMIN;
     }
 
-    // =========================
-    // 📌 هل الحساب مفعل؟
-    // =========================
     public function isActive(): bool
     {
         return (bool) $this->is_active;
