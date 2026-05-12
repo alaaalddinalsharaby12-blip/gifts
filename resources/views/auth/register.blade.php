@@ -76,7 +76,7 @@
 
                 <div>
                     <label class="block text-sm font-bold text-gray-700 mb-1 mr-1">رقم الهاتف</label>
-                    <input id="phone" name="phone" type="text" value="{{ old('phone') }}" required placeholder="05xxxxxxxx"
+                    <input id="phone" name="phone" type="text" value="{{ old('phone') }}" required placeholder="7xxxxxxxx"
                            class="input-focus block w-full px-4 py-3.5 border-2 border-gray-100 rounded-2xl focus:ring-0 focus:border-pink-500 text-right transition bg-gray-50/50 hover:bg-white">
                     <x-input-error :messages="$errors->get('phone')" class="mt-1" />
                 </div>
