@@ -36,11 +36,6 @@ class User extends Authenticatable
         ];
     }
 
-    // ✅ للسماح بتسجيل الدخول بـ name
-    public function getAuthIdentifierName()
-    {
-        return 'name';
-    }
 
     public function orders()
     {

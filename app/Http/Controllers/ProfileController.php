@@ -22,17 +22,39 @@ class ProfileController extends Controller
     }
 
     /**
-     * Update the user's profile information.
+     * Update the user's profile information or password.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // إذا تم إرسال current_password فهذا يعني أن المستخدم يريد تغيير كلمة المرور
+        if ($request->has('current_password')) {
+            $request->validate([
+                'current_password' => ['required', 'current_password'],
+                'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
+            ]);
+
+            $user->password = $request->password; // سيتم تشفيره تلقائياً
+            $user->save();
+
+            return Redirect::route('profile.edit')->with('status', 'password-updated');
         }
 
-        $request->user()->save();
+        // وإلا فهو تحديث عادي للبيانات الشخصية
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email,' . $user->id],
+            'phone' => ['required', 'string', 'max:20', 'unique:users,phone,' . $user->id],
+        ]);
+
+        $user->fill($request->only(['name', 'email', 'phone']));
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null; // فقط إذا كان العمود موجوداً
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

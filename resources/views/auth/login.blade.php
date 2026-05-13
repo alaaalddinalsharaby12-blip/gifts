@@ -81,10 +81,10 @@
             <form method="POST" action="{{ route('login') }}" class="space-y-5">
                 @csrf
 
-                <!-- Login (Name/Email/Phone) -->
+                <!-- Name (Username) -->
                 <div>
-                    <label for="login" class="block text-sm font-semibold text-gray-700 mb-2">
-                        اسم المستخدم / البريد / الهاتف
+                    <label for="name" class="block text-sm font-semibold text-gray-700 mb-2">
+                        اسم المستخدم
                     </label>
                     <div class="relative group">
                         <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
@@ -92,12 +92,11 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                         </div>
-                        <!-- ✅ تغيير name من "name" إلى "login" -->
-                        <input id="login" name="login" type="text" value="{{ old('login') }}" required autofocus autocomplete="username"
+                        <input id="name" name="name" type="text" value="{{ old('name') }}" required autofocus autocomplete="name"
                                class="input-focus block w-full pr-12 pl-4 py-3.5 border-2 border-gray-200 rounded-xl focus:ring-0 focus:border-pink-500 text-right transition duration-200 bg-gray-50/50 hover:bg-white"
-                               placeholder="أدخل اسم المستخدم أو البريد أو الهاتف">
+                               placeholder="أدخل اسم المستخدم">
                     </div>
-                    @error('login')
+                    @error('name')
                         <p class="mt-2 text-sm text-red-600 flex items-center gap-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>

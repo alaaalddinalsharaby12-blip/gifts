@@ -15,8 +15,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'Admin1',
                 'email' => 'admin1@admin.com',
-                'password' => bcrypt('12345678'),
-                'role' => User::ROLE_ADMIN,  // ✅ استخدام Constant
+                'password' => '12345678',         // ✅ لا تستخدم bcrypt() هنا
+                'role' => User::ROLE_ADMIN,
                 'is_active' => true,
             ]
         );
@@ -27,8 +27,8 @@ class UserSeeder extends Seeder
             [
                 'name' => 'User1',
                 'email' => 'user1@user.com',
-                'password' => bcrypt('12345678'),
-                'role' => User::ROLE_USER,   // ✅ استخدام Constant
+                'password' => '12345678',         // ✅ نص عادي
+                'role' => User::ROLE_USER,
                 'is_active' => true,
             ]
         );
@@ -39,9 +39,9 @@ class UserSeeder extends Seeder
             [
                 'name' => 'BlockedUser',
                 'email' => 'blocked@user.com',
-                'password' => bcrypt('12345678'),
+                'password' => '12345678',         // ✅ نص عادي
                 'role' => User::ROLE_USER,
-                'is_active' => false,        // ❌ حساب موقوف
+                'is_active' => false,             // ❌ حساب موقوف
             ]
         );
     }
