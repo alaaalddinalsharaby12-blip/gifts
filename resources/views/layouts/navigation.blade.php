@@ -471,5 +471,3 @@
         </div>
     </div>
 </nav>
-
-<div class="h-0 lg:h-20"></div>
