@@ -10,37 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- ✅ Vite بدلاً من Tailwind CDN --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     
     <!-- Alpine.js -->
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            50: '#fdf2f8',
-                            100: '#fce7f3',
-                            200: '#fbcfe8',
-                            300: '#f9a8d4',
-                            400: '#f472b6',
-                            500: '#ec4899',
-                            600: '#db2777',
-                            700: '#be185d',
-                            800: '#9d174d',
-                            900: '#831843',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
 
     <style>
         :root {
@@ -49,7 +23,6 @@
 
         body { 
             font-family: 'Cairo', sans-serif;
-            /* ✅ يضيف مسافة تلقائية للـ nav */
             padding-top: var(--nav-height);
         }
         
@@ -144,7 +117,7 @@
 
     @stack('scripts')
 
-    {{-- ✅ سكريبت حساب ارتفاع الـ nav تلقائياً --}}
+    {{-- سكريبت حساب ارتفاع الـ nav تلقائياً --}}
     <script>
         function updateNavHeight() {
             const nav = document.querySelector('nav');
@@ -154,13 +127,8 @@
             }
         }
 
-        // تحديث عند التحميل
         updateNavHeight();
-        
-        // تحديث عند تغيير حجم الشاشة
         window.addEventListener('resize', updateNavHeight);
-        
-        // تحديث بعد فترة للتأكد (بعض المتصفحات تتأخر)
         setTimeout(updateNavHeight, 200);
         setTimeout(updateNavHeight, 500);
     </script>

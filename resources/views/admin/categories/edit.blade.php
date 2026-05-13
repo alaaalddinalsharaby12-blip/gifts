@@ -65,6 +65,23 @@
         border: 2px dashed #e8e8e8;
         background: #fafafa;
     }
+
+    /* تحسينات الموبايل */
+    @media (max-width: 768px) {
+        .container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+        
+        .admin-card {
+            border-radius: 1.5rem;
+            padding: 1.25rem !important;
+        }
+
+        h2 {
+            font-size: 1.25rem !important;
+        }
+    }
 </style>
 
 <div class="container mx-auto py-10 px-4 max-w-lg">

@@ -181,38 +181,188 @@
         border-right: 4px solid #ef4444;
         color: #dc2626;
     }
+
+    /* 📱 تحسينات الموبايل */
+    @media (max-width: 768px) {
+        .py-12 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        .px-4 {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+
+        .back-btn {
+            padding: 0.6rem !important;
+        }
+
+        .back-btn svg {
+            width: 18px !important;
+            height: 18px !important;
+        }
+
+        .page-title {
+            font-size: 1.25rem !important;
+        }
+
+        .page-title::after {
+            width: 30px !important;
+            height: 3px !important;
+            bottom: -6px !important;
+        }
+
+        .luxury-form {
+            border-radius: 1.5rem !important;
+        }
+
+        .luxury-form form {
+            padding: 1.25rem !important;
+        }
+
+        .input-luxury {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.8rem !important;
+            border-radius: 1rem !important;
+        }
+
+        select.input-luxury {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.8rem !important;
+        }
+
+        .submit-btn {
+            padding: 0.85rem !important;
+            font-size: 0.85rem !important;
+            border-radius: 1rem !important;
+        }
+
+        .submit-btn svg {
+            width: 18px !important;
+            height: 18px !important;
+        }
+
+        .add-option-btn {
+            padding: 0.6rem 1rem !important;
+            font-size: 0.7rem !important;
+            border-radius: 1rem !important;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .add-option-btn svg {
+            width: 16px !important;
+            height: 16px !important;
+        }
+
+        .option-row {
+            padding: 0.75rem !important;
+            gap: 0.5rem !important;
+            border-radius: 0.75rem !important;
+        }
+
+        .option-row input[type="text"] {
+            padding: 0.6rem 0.75rem !important;
+            font-size: 0.75rem !important;
+        }
+
+        .option-row input[type="color"] {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .remove-btn {
+            width: 28px !important;
+            height: 28px !important;
+            border-radius: 8px !important;
+        }
+
+        .remove-btn svg {
+            width: 14px !important;
+            height: 14px !important;
+        }
+
+        .error-msg {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.75rem !important;
+        }
+
+        .space-y-8 > * + * {
+            margin-top: 1rem !important;
+        }
+
+        .text-lg {
+            font-size: 0.9rem !important;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .page-title {
+            font-size: 1.1rem !important;
+        }
+
+        .back-btn {
+            padding: 0.5rem !important;
+        }
+
+        .back-btn svg {
+            width: 16px !important;
+            height: 16px !important;
+        }
+
+        .luxury-form form {
+            padding: 1rem !important;
+        }
+
+        .input-luxury {
+            padding: 0.65rem 0.75rem !important;
+            font-size: 0.75rem !important;
+        }
+
+        .submit-btn {
+            padding: 0.75rem !important;
+            font-size: 0.8rem !important;
+        }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+        .max-w-2xl {
+            max-width: 90% !important;
+        }
+    }
 </style>
 
-<div class="py-12 px-4 relative">
+<div class="py-6 md:py-12 px-3 md:px-4 relative">
     <div class="bg-blob blob-1"></div>
     <div class="bg-blob blob-2"></div>
 
     <div class="max-w-2xl mx-auto relative z-10">
 
         <!-- الهيدر -->
-        <div class="flex items-center gap-4 mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
-            <a href="{{ route('admin.attributes.index') }}" class="back-btn p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-3 sm:gap-4 mb-6 md:mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
+            <a href="{{ route('admin.attributes.index') }}" class="back-btn p-2.5 sm:p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             </a>
             <div>
-                <h1 class="page-title relative inline-block text-3xl font-black text-gray-900">إضافة سمة جديدة</h1>
-                <p class="text-gray-500 text-sm mt-2">أضف سمة جديدة مع خياراتها للمنتجات</p>
+                <h1 class="page-title relative inline-block text-xl sm:text-3xl font-black text-gray-900">إضافة سمة جديدة</h1>
+                <p class="text-gray-500 text-xs sm:text-sm mt-1 sm:mt-2">أضف سمة جديدة مع خياراتها للمنتجات</p>
             </div>
         </div>
 
         <!-- أخطاء التحقق -->
         @if($errors->any())
-            <div class="animate-fade-in-up mb-6" style="animation-delay: 0.15s;">
-                <div class="error-msg px-6 py-4 rounded-2xl shadow-lg">
+            <div class="animate-fade-in-up mb-5 md:mb-6" style="animation-delay: 0.15s;">
+                <div class="error-msg px-4 sm:px-6 py-3 sm:py-4 rounded-2xl shadow-lg text-xs sm:text-sm">
                     <div class="flex items-center gap-2 mb-2">
-                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         <span class="font-bold">يرجى تصحيح الأخطاء التالية:</span>
                     </div>
-                    <ul class="list-disc list-inside text-sm font-bold space-y-1 mr-6">
+                    <ul class="list-disc list-inside font-bold space-y-1 mr-4 sm:mr-6">
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -221,59 +371,59 @@
             </div>
         @endif
 
-        <div class="luxury-form rounded-[2.5rem] shadow-xl overflow-hidden animate-fade-in-up" style="animation-delay: 0.2s;">
-            <form method="POST" action="{{ route('admin.attributes.store') }}" class="p-8 md:p-10 space-y-8" id="attributeForm">
+        <div class="luxury-form rounded-[2rem] md:rounded-[2.5rem] shadow-xl overflow-hidden animate-fade-in-up" style="animation-delay: 0.2s;">
+            <form method="POST" action="{{ route('admin.attributes.store') }}" class="p-5 sm:p-8 md:p-10 space-y-5 sm:space-y-8" id="attributeForm">
                 @csrf
 
                 <!-- اسم السمة -->
-                <div class="space-y-3 animate-fade-in-up" style="animation-delay: 0.25s;">
-                    <label class="block text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="space-y-2 sm:space-y-3 animate-fade-in-up" style="animation-delay: 0.25s;">
+                    <label class="block text-xs sm:text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                         </svg>
                         اسم السمة <span class="text-red-500">*</span>
                     </label>
                     <input type="text" name="name" value="{{ old('name') }}" placeholder="مثال: الحجم / اللون / المقاس" required
-                           class="input-luxury text-center w-full py-4 px-6 rounded-2xl font-bold text-lg @error('name') is-invalid @enderror">
+                           class="input-luxury text-center w-full py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-bold text-sm sm:text-lg @error('name') is-invalid @enderror">
                     @error('name')
-                        <p class="text-red-500 text-sm font-bold mt-2 mr-2 flex items-center gap-1">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01"/></svg>
+                        <p class="text-red-500 text-xs sm:text-sm font-bold mt-1.5 sm:mt-2 mr-2 flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01"/></svg>
                             {{ $message }}
                         </p>
                     @enderror
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <!-- نوع السمة -->
-                    <div class="space-y-3 animate-fade-in-up" style="animation-delay: 0.3s;">
-                        <label class="block text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="space-y-2 sm:space-y-3 animate-fade-in-up" style="animation-delay: 0.3s;">
+                        <label class="block text-xs sm:text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
                             نوع السمة <span class="text-red-500">*</span>
                         </label>
                         <select name="type" id="type" required onchange="toggleOptionsBox()"
-                                class="input-luxury w-full py-4 px-6 rounded-2xl font-bold text-center appearance-none cursor-pointer @error('type') is-invalid @enderror">
+                                class="input-luxury w-full py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-sm text-center appearance-none cursor-pointer @error('type') is-invalid @enderror">
                             <option value="">اختر النوع</option>
                             <option value="text" {{ old('type') == 'text' ? 'selected' : '' }}>نص</option>
                             <option value="select" {{ old('type') == 'select' ? 'selected' : '' }}>قائمة منسدلة</option>
                             <option value="color" {{ old('type') == 'color' ? 'selected' : '' }}>لون</option>
                         </select>
                         @error('type')
-                            <p class="text-red-500 text-sm font-bold mt-2 mr-2">{{ $message }}</p>
+                            <p class="text-red-500 text-xs sm:text-sm font-bold mt-1.5 sm:mt-2 mr-2">{{ $message }}</p>
                         @enderror
                     </div>
 
                     <!-- القسم -->
-                    <div class="space-y-3 animate-fade-in-up" style="animation-delay: 0.35s;">
-                        <label class="block text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="space-y-2 sm:space-y-3 animate-fade-in-up" style="animation-delay: 0.35s;">
+                        <label class="block text-xs sm:text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                             </svg>
                             القسم <span class="text-red-500">*</span>
                         </label>
                         <select name="category_id" required
-                                class="input-luxury w-full py-4 px-6 rounded-2xl font-bold text-center appearance-none cursor-pointer @error('category_id') is-invalid @enderror">
+                                class="input-luxury w-full py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-sm text-center appearance-none cursor-pointer @error('category_id') is-invalid @enderror">
                             <option value="">اختر القسم</option>
                             @foreach($categories as $cat)
                                 <option value="{{ $cat->id }}" {{ old('category_id') == $cat->id ? 'selected' : '' }}>
@@ -282,30 +432,30 @@
                             @endforeach
                         </select>
                         @error('category_id')
-                            <p class="text-red-500 text-sm font-bold mt-2 mr-2">{{ $message }}</p>
+                            <p class="text-red-500 text-xs sm:text-sm font-bold mt-1.5 sm:mt-2 mr-2">{{ $message }}</p>
                         @enderror
                     </div>
                 </div>
 
                 <!-- خيارات (select و color) -->
-                <div id="optionsBox" class="hidden space-y-4 animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="flex items-center justify-between">
-                        <label class="block text-sm font-black text-gray-700 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div id="optionsBox" class="hidden space-y-3 sm:space-y-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <label class="block text-xs sm:text-sm font-black text-gray-700 flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                             </svg>
                             الخيارات
                         </label>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-bold">مطلوب لقائمة ولون</span>
+                        <span class="text-[9px] sm:text-[10px] bg-emerald-100 text-emerald-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-bold">مطلوب لقائمة ولون</span>
                     </div>
 
-                    <div id="optionsContainer" class="space-y-3">
+                    <div id="optionsContainer" class="space-y-2 sm:space-y-3">
                         <!-- الصفوف تُضاف هنا -->
                     </div>
 
                     <button type="button" onclick="addOptionRow()" 
-                            class="add-option-btn text-white px-6 py-3 rounded-2xl font-black text-sm flex items-center gap-2 shadow-lg shadow-blue-200/50">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="add-option-btn text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-blue-200/50 w-full sm:w-auto justify-center">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/>
                         </svg>
                         إضافة خيار
@@ -313,9 +463,9 @@
                 </div>
 
                 <!-- زر الحفظ -->
-                <div class="pt-4 animate-fade-in-up" style="animation-delay: 0.55s;">
-                    <button type="submit" class="submit-btn w-full text-white font-black py-5 rounded-2xl shadow-xl text-lg flex items-center justify-center gap-3">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="pt-2 sm:pt-4 animate-fade-in-up" style="animation-delay: 0.55s;">
+                    <button type="submit" class="submit-btn w-full text-white font-black py-3.5 sm:py-5 rounded-2xl shadow-xl text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                         </svg>
                         حفظ السمة
@@ -368,7 +518,6 @@ function addOptionRow() {
             </button>
         `;
     } else {
-        // ✅ قائمة: label_ar فقط + value hidden ياخذ نفس القيمة
         div.innerHTML = `
             <input type="hidden" name="options[${optionIndex}][value]" class="option-value-hidden">
             <input type="text" name="options[${optionIndex}][label_ar]" 
@@ -395,7 +544,6 @@ function removeRow(btn) {
 document.addEventListener('DOMContentLoaded', function() {
     toggleOptionsBox();
     
-    // إعادة بناء الصفوف من old() إذا كان هناك خطأ
     @if(old('options') && (old('type') == 'select' || old('type') == 'color'))
         @foreach(old('options') as $i => $opt)
             addOptionRow();

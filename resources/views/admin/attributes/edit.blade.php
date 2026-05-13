@@ -181,38 +181,122 @@
         border-right: 4px solid #ef4444;
         color: #dc2626;
     }
+
+    /* 📱 تحسينات الموبايل */
+    @media (max-width: 768px) {
+        .py-12 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        .px-4 {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+
+        .back-btn {
+            padding: 0.6rem !important;
+        }
+
+        .back-btn svg {
+            width: 18px !important;
+            height: 18px !important;
+        }
+
+        .page-title {
+            font-size: 1.25rem !important;
+        }
+
+        .luxury-form {
+            border-radius: 1.5rem !important;
+        }
+
+        .luxury-form form {
+            padding: 1.25rem !important;
+        }
+
+        .input-luxury {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.8rem !important;
+            border-radius: 1rem !important;
+        }
+
+        .submit-btn {
+            padding: 0.85rem !important;
+            font-size: 0.85rem !important;
+            border-radius: 1rem !important;
+        }
+
+        .add-option-btn {
+            padding: 0.6rem 1rem !important;
+            font-size: 0.7rem !important;
+            border-radius: 1rem !important;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .option-row {
+            padding: 0.75rem !important;
+            gap: 0.5rem !important;
+        }
+
+        .option-row input[type="text"] {
+            padding: 0.6rem 0.75rem !important;
+            font-size: 0.75rem !important;
+        }
+
+        .option-row input[type="color"] {
+            width: 40px !important;
+            height: 40px !important;
+        }
+
+        .remove-btn {
+            width: 28px !important;
+            height: 28px !important;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .page-title {
+            font-size: 1.1rem !important;
+        }
+
+        .luxury-form form {
+            padding: 1rem !important;
+        }
+    }
 </style>
 
-<div class="py-12 px-4 relative">
+<div class="py-6 md:py-12 px-3 md:px-4 relative">
     <div class="bg-blob blob-1"></div>
     <div class="bg-blob blob-2"></div>
 
     <div class="max-w-2xl mx-auto relative z-10">
 
         <!-- الهيدر -->
-        <div class="flex items-center gap-4 mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
-            <a href="{{ route('admin.attributes.index') }}" class="back-btn p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="flex items-center gap-3 sm:gap-4 mb-6 md:mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
+            <a href="{{ route('admin.attributes.index') }}" class="back-btn p-2.5 sm:p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
+                <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                 </svg>
             </a>
             <div>
-                <h1 class="page-title relative inline-block text-3xl font-black text-gray-900">تعديل الصفة</h1>
-                <p class="text-gray-500 text-sm mt-2">تحديث بيانات الصفة: <span class="text-emerald-600 font-bold">{{ $attribute->name }}</span></p>
+                <h1 class="page-title relative inline-block text-xl sm:text-3xl font-black text-gray-900">تعديل الصفة</h1>
+                <p class="text-gray-500 text-xs sm:text-sm mt-1 sm:mt-2">تحديث بيانات الصفة: <span class="text-emerald-600 font-bold">{{ $attribute->name }}</span></p>
             </div>
         </div>
 
         <!-- أخطاء التحقق -->
         @if($errors->any())
-            <div class="animate-fade-in-up mb-6" style="animation-delay: 0.15s;">
-                <div class="error-msg px-6 py-4 rounded-2xl shadow-lg">
+            <div class="animate-fade-in-up mb-5 md:mb-6" style="animation-delay: 0.15s;">
+                <div class="error-msg px-4 sm:px-6 py-3 sm:py-4 rounded-2xl shadow-lg text-xs sm:text-sm">
                     <div class="flex items-center gap-2 mb-2">
-                        <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         <span class="font-bold">يرجى تصحيح الأخطاء التالية:</span>
                     </div>
-                    <ul class="list-disc list-inside text-sm font-bold space-y-1 mr-6">
+                    <ul class="list-disc list-inside font-bold space-y-1 mr-4 sm:mr-6">
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -221,20 +305,20 @@
             </div>
         @endif
 
-        <div class="luxury-form rounded-[2.5rem] shadow-xl overflow-hidden animate-fade-in-up" style="animation-delay: 0.2s;">
-            <form action="{{ route('admin.attributes.update', $attribute->id) }}" method="POST" class="p-8 md:p-10 space-y-8">
+        <div class="luxury-form rounded-[2rem] md:rounded-[2.5rem] shadow-xl overflow-hidden animate-fade-in-up" style="animation-delay: 0.2s;">
+            <form action="{{ route('admin.attributes.update', $attribute->id) }}" method="POST" class="p-5 sm:p-8 md:p-10 space-y-5 sm:space-y-8">
                 @csrf
                 @method('PUT')
 
                 <!-- القسم -->
-                <div class="space-y-3 animate-fade-in-up" style="animation-delay: 0.25s;">
-                    <label class="block text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="space-y-2 sm:space-y-3 animate-fade-in-up" style="animation-delay: 0.25s;">
+                    <label class="block text-xs sm:text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                         </svg>
                         القسم
                     </label>
-                    <select name="category_id" class="input-luxury w-full py-4 px-6 rounded-2xl font-bold text-center appearance-none cursor-pointer">
+                    <select name="category_id" class="input-luxury w-full py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-sm text-center appearance-none cursor-pointer">
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ $attribute->category_id == $category->id ? 'selected' : '' }}>
                                 {{ $category->name }}
@@ -244,81 +328,79 @@
                 </div>
 
                 <!-- اسم الصفة -->
-                <div class="space-y-3 animate-fade-in-up" style="animation-delay: 0.3s;">
-                    <label class="block text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="space-y-2 sm:space-y-3 animate-fade-in-up" style="animation-delay: 0.3s;">
+                    <label class="block text-xs sm:text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
                         </svg>
                         اسم الصفة (مثلاً: اللون، المقاس)
                     </label>
                     <input type="text" name="name" value="{{ old('name', $attribute->name) }}" 
-                           class="input-luxury text-center w-full py-4 px-6 rounded-2xl font-bold text-lg">
+                           class="input-luxury text-center w-full py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-bold text-sm sm:text-lg">
                 </div>
 
                 <!-- نوع المدخل -->
-                <div class="space-y-3 animate-fade-in-up" style="animation-delay: 0.35s;">
-                    <label class="block text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
-                        <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="space-y-2 sm:space-y-3 animate-fade-in-up" style="animation-delay: 0.35s;">
+                    <label class="block text-xs sm:text-sm font-black text-gray-700 mr-2 flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
                         نوع الاختيار
                     </label>
                     <select name="type" id="type" onchange="toggleOptionsBox()"
-                            class="input-luxury w-full py-4 px-6 rounded-2xl font-bold text-center appearance-none cursor-pointer">
+                            class="input-luxury w-full py-3 sm:py-4 px-4 sm:px-6 rounded-2xl font-bold text-xs sm:text-sm text-center appearance-none cursor-pointer">
                         <option value="text" {{ $attribute->type == 'text' ? 'selected' : '' }}>نص (Text)</option>
                         <option value="select" {{ $attribute->type == 'select' ? 'selected' : '' }}>قائمة منسدلة (Select)</option>
                         <option value="color" {{ $attribute->type == 'color' ? 'selected' : '' }}>اختيار لون (Color)</option>
                     </select>
                 </div>
 
-                <!-- ✅ خيارات (للـ select و color فقط) -->
-                <div id="optionsBox" class="{{ $attribute->type == 'text' ? 'hidden' : '' }} space-y-4 animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <div class="flex items-center justify-between">
-                        <label class="block text-sm font-black text-gray-700 flex items-center gap-2">
-                            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <!-- خيارات -->
+                <div id="optionsBox" class="{{ $attribute->type == 'text' ? 'hidden' : '' }} space-y-3 sm:space-y-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <label class="block text-xs sm:text-sm font-black text-gray-700 flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
                             </svg>
                             الخيارات
                         </label>
-                        <span class="text-[10px] bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full font-bold">يمكنك إضافة أو حذف الخيارات</span>
+                        <span class="text-[9px] sm:text-[10px] bg-emerald-100 text-emerald-700 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full font-bold">يمكنك إضافة أو حذف الخيارات</span>
                     </div>
 
-                    <div id="optionsContainer" class="space-y-3">
+                    <div id="optionsContainer" class="space-y-2 sm:space-y-3">
                         @forelse($attribute->options as $index => $option)
-                            <div class="option-row flex gap-3 items-center">
+                            <div class="option-row flex gap-2 sm:gap-3 items-center">
                                 @if($attribute->type == 'color')
                                     <div class="flex-shrink-0">
                                         <input type="color" name="options[{{ $index }}][value]" 
                                                value="{{ $option->value }}" 
-                                               class="w-14 h-14 rounded-xl border-2 border-gray-200 cursor-pointer bg-white p-1" required>
+                                               class="w-10 h-10 sm:w-14 sm:h-14 rounded-xl border-2 border-gray-200 cursor-pointer bg-white p-1" required>
                                     </div>
                                     <input type="text" name="options[{{ $index }}][label_ar]" 
                                            value="{{ $option->label_ar }}" 
                                            placeholder="الاسم العربي" 
-                                           class="input-luxury flex-1 py-3 px-4 rounded-xl font-bold text-center" required>
+                                           class="input-luxury flex-1 py-2 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm text-center" required>
                                 @else
-                                    {{-- ✅ hidden value + label_ar فقط --}}
                                     <input type="hidden" name="options[{{ $index }}][value]" value="{{ $option->value }}">
                                     <input type="text" name="options[{{ $index }}][label_ar]" 
                                            value="{{ $option->label_ar }}" 
                                            placeholder="الاسم العربي" 
-                                           class="input-luxury flex-1 py-3 px-4 rounded-xl font-bold text-center"
+                                           class="input-luxury flex-1 py-2 sm:py-3 px-3 sm:px-4 rounded-xl font-bold text-xs sm:text-sm text-center"
                                            oninput="this.previousElementSibling.value = this.value" required>
                                 @endif
                                 <button type="button" onclick="removeRow(this)" class="remove-btn flex-shrink-0">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
                                     </svg>
                                 </button>
                             </div>
                         @empty
-                            {{-- لا توجد خيارات --}}
                         @endforelse
                     </div>
 
                     <button type="button" onclick="addOptionRow()" 
-                            class="add-option-btn text-white px-6 py-3 rounded-2xl font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-200/50 w-full">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            class="add-option-btn text-white px-4 sm:px-6 py-2.5 sm:py-3 rounded-2xl font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-blue-200/50 w-full sm:w-auto">
+                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/>
                         </svg>
                         إضافة خيار جديد
@@ -326,9 +408,9 @@
                 </div>
 
                 <!-- زر الحفظ -->
-                <div class="pt-4 animate-fade-in-up" style="animation-delay: 0.55s;">
-                    <button type="submit" class="submit-btn w-full text-white font-black py-5 rounded-2xl shadow-xl text-lg flex items-center justify-center gap-3">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="pt-2 sm:pt-4 animate-fade-in-up" style="animation-delay: 0.55s;">
+                    <button type="submit" class="submit-btn w-full text-white font-black py-3.5 sm:py-5 rounded-2xl shadow-xl text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3">
+                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
                         </svg>
                         حفظ التعديلات
@@ -379,7 +461,6 @@ function addOptionRow() {
             </button>
         `;
     } else {
-        // ✅ قائمة: hidden value + label_ar فقط
         div.innerHTML = `
             <input type="hidden" name="options[${optionIndex}][value]" class="option-value-hidden">
             <input type="text" name="options[${optionIndex}][label_ar]" 

@@ -136,17 +136,91 @@
         color: #d63384;
         transform: rotate(90deg);
     }
+
+    /* تحسينات الموبايل */
+    @media (max-width: 768px) {
+        .container {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+        
+        .admin-card {
+            border-radius: 1.5rem;
+        }
+
+        .btn-primary {
+            padding: 0.75rem 1rem !important;
+            font-size: 0.75rem !important;
+            border-radius: 1rem !important;
+        }
+
+        .btn-primary svg {
+            width: 1rem !important;
+            height: 1rem !important;
+        }
+
+        .btn-icon {
+            width: 32px !important;
+            height: 32px !important;
+        }
+
+        .btn-icon svg {
+            width: 14px !important;
+            height: 14px !important;
+        }
+
+        table {
+            font-size: 0.75rem;
+        }
+
+        th, td {
+            padding: 0.75rem 0.5rem !important;
+        }
+
+        .video-thumb {
+            width: 44px;
+            height: 33px;
+        }
+
+        h2 {
+            font-size: 1.25rem !important;
+        }
+
+        .badge-count {
+            padding: 0.25rem 0.5rem !important;
+            font-size: 0.65rem !important;
+        }
+    }
 </style>
 
 <div class="container mx-auto py-10 px-4 max-w-6xl">
 
+    {{-- 🔙 زر الرجوع إلى لوحة التحكم --}}
+    <a href="{{ route('admin.dashboard') }}" 
+       class="inline-flex items-center gap-2 px-3 sm:px-5 py-2.5 sm:py-3 rounded-2xl 
+              bg-white border border-gray-100 shadow-sm 
+              hover:shadow-md hover:border-pink-200 hover:bg-pink-50/50 
+              transition-all duration-300 group mb-6 sm:mb-8">
+        <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 group-hover:text-pink-500 
+                    group-hover:-translate-x-1 transition-all duration-300" 
+             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" 
+                  d="M15 19l-7-7 7-7"/>
+        </svg>
+        <span class="text-sm font-bold text-gray-600 group-hover:text-gray-800 transition-colors">
+            <span class="hidden sm:inline">العودة للوحة التحكم</span>
+            <span class="sm:hidden">لوحة التحكم</span>
+        </span>
+    </a>
+
     <!-- الهيدر -->
-    <div class="flex items-center justify-between mb-8">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div>
-            <h2 class="text-2xl font-black text-gray-900">إدارة الأقسام </h2>
+            <h2 class="text-2xl font-black text-gray-900">إدارة الأقسام</h2>
             <p class="text-gray-400 text-sm font-bold mt-1">إجمالي الأقسام: {{ $categories->count() }}</p>
         </div>
-        <a href="{{ route('admin.categories.create') }}" class="btn-primary px-6 py-3 rounded-2xl font-black text-sm flex items-center gap-2 shadow-lg shadow-pink-200/50">
+        <a href="{{ route('admin.categories.create') }}" 
+           class="btn-primary px-6 py-3 rounded-2xl font-black text-sm flex items-center gap-2 shadow-lg shadow-pink-200/50 w-full sm:w-auto justify-center">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 4v16m8-8H4"/>
             </svg>
@@ -179,22 +253,22 @@
             <table class="min-w-full divide-y divide-gray-100">
                 <thead>
                     <tr class="bg-gray-50/80">
-                        <th class="px-6 py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">#</th>
-                        <th class="px-6 py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">الصورة</th>
-                        <th class="px-6 py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">الفيديو</th>
-                        <th class="px-6 py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">الاسم</th>
-                        <th class="px-6 py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">المحتوى</th>
-                        <th class="px-6 py-4 text-center text-xs font-black text-gray-400 uppercase tracking-wider">المنتجات</th>
-                        <th class="px-6 py-4 text-center text-xs font-black text-gray-400 uppercase tracking-wider">إجراءات</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">#</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">الصورة</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider hidden sm:table-cell">الفيديو</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider">الاسم</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-black text-gray-400 uppercase tracking-wider hidden md:table-cell">المحتوى</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-black text-gray-400 uppercase tracking-wider">المنتجات</th>
+                        <th class="px-4 sm:px-6 py-3 sm:py-4 text-center text-xs font-black text-gray-400 uppercase tracking-wider">إجراءات</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-50">
                     @forelse($categories as $category)
                     <tr class="table-row">
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-black text-gray-400">{{ $category->id }}</td>
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-sm font-black text-gray-400">{{ $category->id }}</td>
                         
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="w-12 h-12 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl overflow-hidden bg-gray-100 border border-gray-100">
                                 @if($category->image)
                                     <img src="{{ asset('storage/'.$category->image) }}" class="w-full h-full object-cover" alt="{{ $category->name }}">
                                 @else
@@ -207,7 +281,7 @@
                             </div>
                         </td>
 
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap hidden sm:table-cell">
                             @if($category->video)
                                 <div class="video-thumb" onclick="openVideo('{{ asset('storage/'.$category->video) }}')">
                                     <img src="{{ asset('storage/'.$category->image) }}" alt="">
@@ -220,24 +294,24 @@
                             @endif
                         </td>
                         
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                             <div class="text-sm font-black text-gray-900">{{ $category->name }}</div>
                         </td>
                         
-                        <td class="px-6 py-4">
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 hidden md:table-cell">
                             <div class="text-xs text-gray-500 line-clamp-2 max-w-[180px] leading-relaxed">
                                 {{ $category->contents ?? 'لا يوجد' }}
                             </div>
                         </td>
                         
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                            <span class="badge-count inline-flex items-center justify-center px-3 py-1 rounded-lg text-xs font-black">
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
+                            <span class="badge-count inline-flex items-center justify-center px-2 sm:px-3 py-1 rounded-lg text-xs font-black">
                                 {{ $category->products_count }}
                             </span>
                         </td>
                         
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                            <div class="flex justify-center items-center gap-2">
+                        <td class="px-4 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-center">
+                            <div class="flex justify-center items-center gap-1 sm:gap-2">
                                 <a href="{{ route('admin.categories.edit', $category) }}" class="btn-icon" title="تعديل">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
