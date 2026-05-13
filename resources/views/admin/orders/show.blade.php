@@ -328,21 +328,7 @@
     <div class="bg-blob blob-1"></div>
 
     <div class="max-w-4xl mx-auto relative z-10">
-
-        {{-- 🔙 زر الرجوع إلى لوحة التحكم (مناسب لجميع الشاشات) --}}
-        <a href="{{ route('admin.index') }}" 
-           class="back-dashboard-btn inline-flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-3 rounded-2xl mb-5 md:mb-8">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 transition-all duration-300" 
-                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" 
-                      d="M15 19l-7-7 7-7"/>
-            </svg>
-            <span class="text-sm font-bold text-gray-600 transition-colors duration-300">
-                <span class="hidden sm:inline">العودة للوحة الطلبات</span>
-                <span class="sm:hidden">لوحة الطلبات</span>
-            </span>
-        </a>
-
+        
         <!-- الهيدر -->
         <div class="flex items-center gap-3 sm:gap-4 mb-6 md:mb-10 animate-fade-in-up" style="animation-delay: 0.1s;">
             <a href="{{ route('admin.orders.index') }}" class="back-btn p-2.5 sm:p-3 bg-white rounded-2xl shadow-sm border border-gray-100">
