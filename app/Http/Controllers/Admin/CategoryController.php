@@ -38,12 +38,14 @@ class CategoryController extends Controller
             'contents' => 'nullable|string|max:5000',
         ]);
 
-        // رفع الصورة
-        $validated['image'] = $request->file('image')->store('categories', 'public');
+        $disk = config('filesystems.default', 'public');
 
-        // رفع الفيديو
+        // ✅ رفع الصورة للـ S3
+        $validated['image'] = $request->file('image')->store('categories', $disk);
+
+        // ✅ رفع الفيديو للـ S3
         if ($request->hasFile('video')) {
-            $validated['video'] = $request->file('video')->store('videos', 'public');
+            $validated['video'] = $request->file('video')->store('videos', $disk);
         }
 
         Category::create($validated);
@@ -72,25 +74,27 @@ class CategoryController extends Controller
             'contents' => 'nullable|string|max:5000',
         ]);
 
+        $disk = config('filesystems.default', 'public');
+
         $data = [
             'name'     => $request->name,
             'contents' => $request->contents,
         ];
 
-        // تحديث الصورة
+        // ✅ تحديث الصورة - حذف القديمة من S3
         if ($request->hasFile('image')) {
             if ($category->image) {
-                Storage::disk('public')->delete($category->image);
+                Storage::disk($disk)->delete($category->image);
             }
-            $data['image'] = $request->file('image')->store('categories', 'public');
+            $data['image'] = $request->file('image')->store('categories', $disk);
         }
 
-        // تحديث الفيديو
+        // ✅ تحديث الفيديو - حذف القديم من S3
         if ($request->hasFile('video')) {
             if ($category->video) {
-                Storage::disk('public')->delete($category->video);
+                Storage::disk($disk)->delete($category->video);
             }
-            $data['video'] = $request->file('video')->store('videos', 'public');
+            $data['video'] = $request->file('video')->store('videos', $disk);
         }
 
         $category->update($data);
@@ -108,12 +112,14 @@ class CategoryController extends Controller
             return back()->with('error', 'لا يمكن حذف قسم يحتوي على منتجات');
         }
 
-        // حذف الملفات
+        $disk = config('filesystems.default', 'public');
+
+        // ✅ حذف الملفات من S3
         if ($category->image) {
-            Storage::disk('public')->delete($category->image);
+            Storage::disk($disk)->delete($category->image);
         }
         if ($category->video) {
-            Storage::disk('public')->delete($category->video);
+            Storage::disk($disk)->delete($category->video);
         }
 
         $category->delete();

@@ -16,7 +16,7 @@
         position: absolute;
         border-radius: 50%;
         filter: blur(80px);
-        opacity: 0.15;
+        opacity: 0.12;
         pointer-events: none;
         animation: orbFloat 20s ease-in-out infinite;
     }
@@ -65,6 +65,11 @@
         50% { box-shadow: 0 0 40px rgba(233, 69, 96, 0.4); }
     }
 
+    @keyframes countUp {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
     .animate-fade-up {
         animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         opacity: 0;
@@ -80,10 +85,11 @@
     }
 
     .title-shimmer {
-        background: linear-gradient(90deg, #fff 0%, #e94560 25%, #fff 50%, #e94560 75%, #fff 100%);
+        background: linear-gradient(90deg, #fff 0%, #e94560 25%, #c8963e 50%, #e94560 75%, #fff 100%);
         background-size: 200% auto;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
         animation: shimmer 4s linear infinite;
     }
 
@@ -149,7 +155,7 @@
 
     .decorative-line {
         height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
     }
 
     .counter-badge {
@@ -169,6 +175,19 @@
         box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
         animation: pulse-glow 2s ease-in-out infinite;
         z-index: 10;
+    }
+
+    /* 🆕 عرض العدد داخل البطاقة */
+    .card-count {
+        font-size: 2.5rem;
+        font-weight: 900;
+        color: #fff;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+    }
+
+    .luxury-card:hover .card-count {
+        animation: countUp 0.4s ease forwards;
     }
 
     .stagger-1 { animation-delay: 0.1s; }
@@ -204,7 +223,7 @@
         font-variant-numeric: tabular-nums;
     }
 
-    /* ====== 🆕 جدول متجاوب بطريقة الكروت ====== */
+    /* ====== جدول متجاوب ====== */
     .table-wrapper {
         width: 100%;
         overflow-x: auto;
@@ -256,6 +275,7 @@
         font-size: 0.65rem;
         text-transform: uppercase;
         letter-spacing: 1px;
+        font-weight: 700;
     }
 
     .order-card .value {
@@ -268,6 +288,7 @@
     .order-card .order-id {
         color: #e94560;
         font-family: monospace;
+        font-weight: 800;
     }
 
     /* =========================== */
@@ -283,21 +304,21 @@
         }
 
         .dashboard-header h1 {
-            font-size: 1.6rem !important;
+            font-size: 1.5rem !important;
         }
 
         .dashboard-header p {
-            font-size: 0.8rem !important;
+            font-size: 0.75rem !important;
         }
 
         .dashboard-header .w-16 {
-            width: 48px !important;
-            height: 48px !important;
+            width: 44px !important;
+            height: 44px !important;
         }
 
         .dashboard-header .w-16 svg {
-            width: 24px !important;
-            height: 24px !important;
+            width: 22px !important;
+            height: 22px !important;
         }
 
         .luxury-card {
@@ -306,32 +327,36 @@
         }
 
         .luxury-card .card-icon {
-            padding: 0.8rem !important;
-            margin-bottom: 0.8rem !important;
+            padding: 0.7rem !important;
+            margin-bottom: 0.6rem !important;
         }
 
         .luxury-card .card-icon svg {
-            width: 28px !important;
-            height: 28px !important;
+            width: 26px !important;
+            height: 26px !important;
         }
 
         .luxury-card h3 {
-            font-size: 1.1rem !important;
-            margin-bottom: 0.3rem !important;
+            font-size: 1rem !important;
+            margin-bottom: 0.2rem !important;
         }
 
         .luxury-card p {
-            font-size: 0.7rem !important;
-            margin-bottom: 0.5rem !important;
+            font-size: 0.65rem !important;
+            margin-bottom: 0.4rem !important;
         }
 
         .luxury-card .text-sm {
-            font-size: 0.7rem !important;
+            font-size: 0.65rem !important;
+        }
+
+        .card-count {
+            font-size: 1.8rem !important;
         }
 
         .counter-badge {
-            min-width: 24px !important;
-            height: 24px !important;
+            min-width: 22px !important;
+            height: 22px !important;
             font-size: 10px !important;
             top: -6px !important;
             right: -6px !important;
@@ -350,7 +375,7 @@
         }
 
         .stat-number {
-            font-size: 1.5rem !important;
+            font-size: 1.3rem !important;
         }
 
         .text-xs {
@@ -374,11 +399,11 @@
         }
 
         .gap-6 {
-            gap: 0.8rem !important;
+            gap: 0.6rem !important;
         }
 
         .gap-4 {
-            gap: 0.5rem !important;
+            gap: 0.4rem !important;
         }
 
         .mt-16 {
@@ -406,27 +431,27 @@
         }
 
         .text-2xl {
-            font-size: 1.2rem !important;
+            font-size: 1.1rem !important;
         }
 
         .text-xl {
-            font-size: 1rem !important;
+            font-size: 0.9rem !important;
         }
 
         .text-lg {
-            font-size: 0.85rem !important;
+            font-size: 0.8rem !important;
         }
 
         .w-12 {
-            width: 36px !important;
-            height: 36px !important;
+            width: 32px !important;
+            height: 32px !important;
         }
 
         .w-12 svg {
-            width: 16px !important;
+            width: 14px !important;
+            height: 14px !important;
         }
 
-        /* 🆕 إخفاء الجدول وإظهار الكروت */
         .desktop-table {
             display: none !important;
         }
@@ -436,7 +461,6 @@
         }
     }
 
-    /* أجهزة أكبر - إظهار الجدول وإخفاء الكروت */
     @media (min-width: 769px) {
         .desktop-table {
             display: block !important;
@@ -447,23 +471,26 @@
         }
     }
 
-    /* موبايل صغير جداً */
     @media (max-width: 360px) {
         .dashboard-header h1 {
-            font-size: 1.3rem !important;
+            font-size: 1.2rem !important;
         }
 
         .luxury-card {
-            padding: 1rem !important;
+            padding: 0.9rem !important;
         }
 
         .luxury-card .card-icon svg {
-            width: 24px !important;
-            height: 24px !important;
+            width: 22px !important;
+            height: 22px !important;
         }
 
         .luxury-card h3 {
-            font-size: 1rem !important;
+            font-size: 0.85rem !important;
+        }
+
+        .card-count {
+            font-size: 1.5rem !important;
         }
 
         .grid-cols-5 {
@@ -471,19 +498,18 @@
         }
 
         .order-card {
-            padding: 0.8rem !important;
+            padding: 0.7rem !important;
         }
 
         .order-card .label {
-            font-size: 0.6rem !important;
+            font-size: 0.55rem !important;
         }
 
         .order-card .value {
-            font-size: 0.7rem !important;
+            font-size: 0.65rem !important;
         }
     }
 
-    /* تابلت */
     @media (min-width: 769px) and (max-width: 1024px) {
         .grid-cols-4 {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -505,7 +531,7 @@
         <!-- الهيدر -->
         <div class="dashboard-header text-center mb-8 md:mb-16 animate-fade-down">
             <div class="inline-flex items-center gap-3 mb-4 md:mb-6">
-                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-[#e94560] to-[#ff6b6b] flex items-center justify-center shadow-2xl shadow-[#e94560]/30">
+                <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-[#e94560] to-[#c8963e] flex items-center justify-center shadow-2xl shadow-[#e94560]/30">
                     <svg class="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                     </svg>
@@ -530,14 +556,17 @@
                 @endif
                 
                 <div class="flex flex-col items-center text-center relative z-10">
-                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl mb-3 md:mb-6 border border-blue-400/20">
+                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-blue-500/20 to-blue-600/10 rounded-2xl mb-2 md:mb-4 border border-blue-400/20">
                         <div class="icon-glow bg-blue-500 rounded-2xl"></div>
-                        <svg class="w-7 h-7 md:w-10 md:h-10 text-blue-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-7 h-7 md:w-9 md:h-9 text-blue-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                         </svg>
                     </div>
                     
-                    <h3 class="text-lg md:text-2xl font-black text-white mb-1 md:mb-2 group-hover:text-blue-300 transition-colors">الأقسام</h3>
+                    {{-- 🆕 العدد داخل البطاقة --}}
+                    <div class="card-count text-blue-400">{{ $stats['categories_count'] }}</div>
+                    
+                    <h3 class="text-base md:text-xl font-black text-white mb-1 group-hover:text-blue-300 transition-colors">الأقسام</h3>
                     <p class="text-gray-500 text-xs md:text-sm mb-2 md:mb-4">إدارة تصنيفات المنتجات</p>
                     
                     <div class="flex items-center gap-1 md:gap-2 text-blue-400 text-xs md:text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -556,14 +585,17 @@
                 @endif
                 
                 <div class="flex flex-col items-center text-center relative z-10">
-                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl mb-3 md:mb-6 border border-emerald-400/20">
+                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 rounded-2xl mb-2 md:mb-4 border border-emerald-400/20">
                         <div class="icon-glow bg-emerald-500 rounded-2xl"></div>
-                        <svg class="w-7 h-7 md:w-10 md:h-10 text-emerald-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-7 h-7 md:w-9 md:h-9 text-emerald-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                         </svg>
                     </div>
                     
-                    <h3 class="text-lg md:text-2xl font-black text-white mb-1 md:mb-2 group-hover:text-emerald-300 transition-colors">المنتجات</h3>
+                    {{-- 🆕 العدد داخل البطاقة --}}
+                    <div class="card-count text-emerald-400">{{ $stats['products_count'] }}</div>
+                    
+                    <h3 class="text-base md:text-xl font-black text-white mb-1 group-hover:text-emerald-300 transition-colors">المنتجات</h3>
                     <p class="text-gray-500 text-xs md:text-sm mb-2 md:mb-4">إضافة وتعديل المنتجات</p>
                     
                     <div class="flex items-center gap-1 md:gap-2 text-emerald-400 text-xs md:text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -582,14 +614,17 @@
                 @endif
                 
                 <div class="flex flex-col items-center text-center relative z-10">
-                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-orange-500/20 to-orange-600/10 rounded-2xl mb-3 md:mb-6 border border-orange-400/20">
+                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-orange-500/20 to-orange-600/10 rounded-2xl mb-2 md:mb-4 border border-orange-400/20">
                         <div class="icon-glow bg-orange-500 rounded-2xl"></div>
-                        <svg class="w-7 h-7 md:w-10 md:h-10 text-orange-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-7 h-7 md:w-9 md:h-9 text-orange-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                         </svg>
                     </div>
                     
-                    <h3 class="text-lg md:text-2xl font-black text-white mb-1 md:mb-2 group-hover:text-orange-300 transition-colors">الطلبات</h3>
+                    {{-- 🆕 العدد داخل البطاقة --}}
+                    <div class="card-count text-orange-400">{{ $stats['orders_count'] }}</div>
+                    
+                    <h3 class="text-base md:text-xl font-black text-white mb-1 group-hover:text-orange-300 transition-colors">الطلبات</h3>
                     <p class="text-gray-500 text-xs md:text-sm mb-2 md:mb-4">متابعة مبيعات العملاء</p>
                     
                     <div class="flex items-center gap-1 md:gap-2 text-orange-400 text-xs md:text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -606,14 +641,17 @@
                 <div class="counter-badge">8</div>
                 
                 <div class="flex flex-col items-center text-center relative z-10">
-                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-purple-500/20 to-purple-600/10 rounded-2xl mb-3 md:mb-6 border border-purple-400/20">
+                    <div class="card-icon relative p-3 md:p-5 bg-gradient-to-br from-purple-500/20 to-purple-600/10 rounded-2xl mb-2 md:mb-4 border border-purple-400/20">
                         <div class="icon-glow bg-purple-500 rounded-2xl"></div>
-                        <svg class="w-7 h-7 md:w-10 md:h-10 text-purple-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-7 h-7 md:w-9 md:h-9 text-purple-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                         </svg>
                     </div>
                     
-                    <h3 class="text-lg md:text-2xl font-black text-white mb-1 md:mb-2 group-hover:text-purple-300 transition-colors">المتطلبات</h3>
+                    {{-- 🆕 العدد داخل البطاقة --}}
+                    <div class="card-count text-purple-400">8</div>
+                    
+                    <h3 class="text-base md:text-xl font-black text-white mb-1 group-hover:text-purple-300 transition-colors">المتطلبات</h3>
                     <p class="text-gray-500 text-xs md:text-sm mb-2 md:mb-4">تخصيص خيارات المنتجات</p>
                     
                     <div class="flex items-center gap-1 md:gap-2 text-purple-400 text-xs md:text-sm font-bold opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -672,12 +710,11 @@
         </div>
         @endif
 
-        <!-- 🆕 أحدث الطلبات - عرضين: جدول للديسكتوب + كروت للموبايل -->
+        <!-- أحدث الطلبات -->
         @if($latestOrders->count() > 0)
         <div class="mt-8 md:mt-12 animate-fade-up" style="animation-delay: 0.7s;">
             <h3 class="text-lg md:text-xl font-black text-white mb-4 md:mb-6 text-center">أحدث الطلبات</h3>
             
-            <!-- 🖥️ عرض الجدول - للديسكتوب -->
             <div class="desktop-table table-wrapper rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
                 <table class="w-full text-right">
                     <thead>
@@ -691,7 +728,7 @@
                     <tbody class="text-white">
                         @foreach($latestOrders as $order)
                         <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
-                            <td class="p-4 font-mono text-gray-400">#{{ $order->id }}</td>
+                            <td class="p-4 font-mono text-[#e94560] font-bold">#{{ $order->id }}</td>
                             <td class="p-4">{{ $order->user?->name ?? 'زائر' }}</td>
                             <td class="p-4">{{ $order->product?->name ?? '-' }}</td>
                             <td class="p-4 text-gray-400 text-sm">
@@ -705,7 +742,6 @@
                 </table>
             </div>
 
-            <!-- 📱 عرض الكروت - للموبايل -->
             <div class="orders-cards">
                 @foreach($latestOrders as $order)
                 <div class="order-card">
@@ -741,8 +777,8 @@
             <h3 class="text-lg md:text-xl font-black text-white mb-4 md:mb-6 text-center">أحدث المستخدمين</h3>
             <div class="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-4">
                 @foreach($latestUsers as $user)
-                <div class="text-center p-3 md:p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm">
-                    <div class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 rounded-full bg-gradient-to-br from-[#e94560] to-[#ff6b6b] flex items-center justify-center text-white font-bold text-sm md:text-lg">
+                <div class="text-center p-3 md:p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                    <div class="w-10 h-10 md:w-12 md:h-12 mx-auto mb-2 md:mb-3 rounded-full bg-gradient-to-br from-[#e94560] to-[#c8963e] flex items-center justify-center text-white font-bold text-sm md:text-lg shadow-lg">
                         {{ mb_substr($user->name, 0, 1) }}
                     </div>
                     <div class="text-white font-bold text-xs md:text-sm truncate">{{ $user->name }}</div>

@@ -8,15 +8,15 @@
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(139, 92, 246, 0.08);
+            border-bottom: 1px solid rgba(214, 51, 132, 0.08);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .nav-luxury.scrolled {
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.1);
-            border-bottom-color: rgba(139, 92, 246, 0.15);
+            box-shadow: 0 8px 40px rgba(214, 51, 132, 0.1);
+            border-bottom-color: rgba(214, 51, 132, 0.15);
         }
 
         .lux-link {
@@ -36,7 +36,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(245,158,11,0.05));
+            background: linear-gradient(135deg, rgba(214,51,132,0.1), rgba(200,150,62,0.05));
             border-radius: 1rem;
             opacity: 0;
             transform: scale(0.9);
@@ -44,7 +44,7 @@
         }
 
         .lux-link:hover, .lux-link.active {
-            color: #8b5cf6 !important;
+            color: #d63384 !important;
         }
 
         .lux-link:hover::before, .lux-link.active::before {
@@ -57,17 +57,37 @@
             z-index: 1;
         }
 
+        /* أيقونة الرئيسية */
+        .lux-link .icon-home { color: #d63384; }
+        .lux-link.active .icon-home,
+        .lux-link:hover .icon-home { color: #d63384; }
+
+        /* أيقونة لوحة التحكم */
+        .lux-link .icon-dashboard { color: #8b5cf6; }
+        .lux-link.active .icon-dashboard,
+        .lux-link:hover .icon-dashboard { color: #7c3aed; }
+
+        /* أيقونة المستخدمين */
+        .lux-link .icon-users { color: #06b6d4; }
+        .lux-link.active .icon-users,
+        .lux-link:hover .icon-users { color: #0891b2; }
+
+        /* أيقونة الطلبات */
+        .lux-link .icon-orders { color: #f59e0b; }
+        .lux-link.active .icon-orders,
+        .lux-link:hover .icon-orders { color: #d97706; }
+
         .lux-btn-gold {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+            background: linear-gradient(135deg, #c8963e, #a67c2e);
             color: white;
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.2);
+            box-shadow: 0 4px 15px rgba(200, 150, 62, 0.2);
             font-weight: 800;
         }
 
         .lux-btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.35);
+            box-shadow: 0 10px 30px rgba(200, 150, 62, 0.35);
             filter: brightness(1.1);
         }
 
@@ -80,16 +100,16 @@
         }
 
         .lux-btn-outline:hover {
-            border-color: #8b5cf6;
-            color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.05);
+            border-color: #d63384;
+            color: #d63384;
+            background: rgba(214, 51, 132, 0.05);
             transform: translateY(-2px);
         }
 
         .lux-avatar {
             width: 38px;
             height: 38px;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            background: linear-gradient(135deg, #d63384, #c8963e);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -97,7 +117,7 @@
             color: white;
             font-weight: 900;
             font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.25);
             transition: all 0.3s ease;
             border: 2px solid white;
             flex-shrink: 0;
@@ -105,17 +125,26 @@
 
         .lux-avatar:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.35);
+            box-shadow: 0 6px 20px rgba(214, 51, 132, 0.35);
         }
 
         .lux-dropdown {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(139, 92, 246, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(214, 51, 132, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(214, 51, 132, 0.15);
             border-radius: 1.5rem;
             min-width: 280px;
             overflow: hidden;
+        }
+
+        .img-icon {
+            height: 53px;
+            width: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         .lux-dropdown-item {
@@ -132,8 +161,8 @@
         }
 
         .lux-dropdown-item:hover {
-            background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(245,158,11,0.04));
-            color: #8b5cf6;
+            background: linear-gradient(135deg, rgba(214,51,132,0.08), rgba(200,150,62,0.04));
+            color: #d63384;
             transform: translateX(-3px);
         }
 
@@ -147,7 +176,7 @@
 
         .lux-dropdown-item:hover svg {
             opacity: 1;
-            color: #8b5cf6;
+            color: #d63384;
             transform: scale(1.1);
         }
 
@@ -166,10 +195,14 @@
             color: #dc2626 !important;
         }
 
+        .lux-logout svg {
+            color: #ef4444 !important;
+        }
+
         .lux-mobile {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(139, 92, 246, 0.1);
+            border-top: 1px solid rgba(214, 51, 132, 0.1);
             box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
         }
 
@@ -187,8 +220,8 @@
         }
 
         .lux-mobile-item:hover, .lux-mobile-item.active {
-            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(245,158,11,0.05));
-            color: #8b5cf6;
+            background: linear-gradient(135deg, rgba(214,51,132,0.1), rgba(200,150,62,0.05));
+            color: #d63384;
         }
 
         .lux-mobile-item svg {
@@ -200,7 +233,7 @@
 
         .lux-mobile-item.active svg, .lux-mobile-item:hover svg {
             opacity: 1;
-            color: #8b5cf6;
+            color: #d63384;
         }
 
         .lux-hamburger {
@@ -214,35 +247,35 @@
         }
 
         .lux-hamburger:hover {
-            background: rgba(139, 92, 246, 0.08);
-            color: #8b5cf6;
+            background: rgba(214, 51, 132, 0.08);
+            color: #d63384;
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { scrollbar-width: none; }
 
         .lux-logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+            width: 50px;
+            height: 53px;
+            background: linear-gradient(135deg, #d63384, #c8963e);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 8px 25px rgba(214, 51, 132, 0.3);
             transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             flex-shrink: 0;
         }
 
         .lux-logo-icon:hover {
             transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 12px 35px rgba(214, 51, 132, 0.4);
         }
 
         .lux-logo-text {
             font-size: 1.1rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #1e293b, #8b5cf6);
+            background: linear-gradient(135deg, #1e293b, #d63384);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -281,16 +314,14 @@
                 <div class="flex items-center gap-3 sm:gap-6">
                     <a href="{{ route('home') }}" class="flex items-center gap-2 sm:gap-2.5 group shrink-0">
                         <div class="lux-logo-icon w-9 h-9 sm:w-10 sm:h-10">
-                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                            </svg>
+                            <img class="img-icon" src="{{ asset('storage/1778869897882.png') }}" alt="JUST FOR YOU" style="width: 50px; height: 53px; border-radius: 12px; object-fit: cover; display: block;">
                         </div>
-                        <span class="lux-logo-text text-sm sm:text-lg">مناسباتي</span>
+                        <span class="lux-logo-text text-sm sm:text-lg">JUST FOR YOU</span>
                     </a>
 
                     <div class="hidden lg:flex items-center gap-1 border-r border-gray-100 pr-3 sm:pr-4">
                         <a href="{{ route('home') }}" class="lux-link {{ request()->routeIs('home') ? 'active' : '' }}">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 icon-home" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                             </svg>
                             <span>الرئيسية</span>
@@ -299,14 +330,14 @@
                         @auth
                             @if(auth()->user()->isAdmin())
                                 <a href="{{ route('admin.dashboard') }}" class="lux-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 icon-dashboard" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
                                     </svg>
                                     <span class="hidden xl:inline">لوحة التحكم</span>
                                     <span class="xl:hidden">التحكم</span>
                                 </a>
                                 <a href="{{ route('admin.users.index') }}" class="lux-link {{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-4 h-4 icon-users" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
                                     </svg>
                                     <span class="hidden xl:inline">المستخدمين</span>
@@ -314,7 +345,7 @@
                                 </a>
                             @endif
                             <a href="{{ route('orders.index') }}" class="lux-link {{ request()->routeIs('orders.index') ? 'active' : '' }}">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-4 h-4 icon-orders" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                                 </svg>
                                 <span>{{ auth()->user()->isAdmin() ? 'الطلبات' : 'طلباتي' }}</span>
@@ -417,7 +448,7 @@
 
         <div class="p-3 sm:p-4 space-y-1">
             @auth
-                <div class="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 mb-2 sm:mb-3 bg-gradient-to-r from-violet-50 to-amber-50 rounded-2xl border border-violet-100">
+                <div class="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 mb-2 sm:mb-3 bg-gradient-to-r from-pink-50 to-amber-50 rounded-2xl border border-pink-100">
                     <div class="lux-avatar w-8 h-8 sm:w-[38px] sm:h-[38px] text-xs sm:text-sm shrink-0">{{ mb_substr(auth()->user()->name, 0, 1) }}</div>
                     <div>
                         <p class="text-xs sm:text-sm font-black text-gray-900">{{ auth()->user()->name }}</p>
@@ -471,3 +502,4 @@
         </div>
     </div>
 </nav>
+<div class="h-1 sm:h-1 lg:h-1" aria-hidden="true"></div>

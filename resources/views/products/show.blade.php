@@ -570,7 +570,6 @@
         .gallery-dot.bg-white {
             width: 10px !important;
         }
-
         .btn-luxury {
             padding: 0.7rem !important;
             font-size: 0.85rem !important;
@@ -678,6 +677,9 @@
         
         .space-y-8 > * + * { margin-top: 0.5rem !important; }
         .space-y-4 > * + * { margin-top: 0.3rem !important; }
+    }
+    #A{
+        font-size:31px;
     }
 </style>
 
@@ -799,8 +801,8 @@
                                 </svg>
                             </span>
                             <span class="leading-tight">
-                                لمحات من الفخامة<br>
-                                <span class="text-pink-500 text-sm md:text-lg">بداخل البوكس</span>
+                                تفاصيل من...
+                                <span id="A" class="text-pink-500 text-sm ">السعادة</span>
                             </span>
                         </h3>
                     </div>
@@ -823,7 +825,7 @@
                                     @endforeach
                                 </div>
                                 
-                                <span class="text-pink-600 font-black block mt-4 md:mt-6 pt-3 md:pt-4 border-t border-pink-200/30 text-sm md:text-base">.. وأكثر، لتكتمل تفاصيل لحظتكم الخاصة ✨</span>
+                                <span class="text-pink-600 font-black block mt-4 md:mt-6 pt-3 md:pt-4 border-t border-pink-200/30 text-sm md:text-base">.. وأكثر، لتكتمل تفاصيل لاحظتكم الخاصة ✨</span>
                             </div>
                         </div>
                     </div>
@@ -994,7 +996,7 @@ function prevImage() {
 }
 
 @if($product->images->count() > 1)
-let autoSlide = setInterval(nextImage, 6000);
+let autoSlide = setInterval(nextImage, 5000);
 
 const gallery = document.getElementById('imageGallery');
 gallery?.addEventListener('mouseenter', () => clearInterval(autoSlide));

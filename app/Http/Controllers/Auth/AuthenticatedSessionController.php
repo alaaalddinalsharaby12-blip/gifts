@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
                 ->with('error', 'تم إيقاف حسابك. تواصل مع الإدارة.');
         }
 
-        return redirect()->intended(route('dashboard'));
+        return redirect()->intended(route('home'));
     }
 
     public function destroy(Request $request): RedirectResponse
